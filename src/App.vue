@@ -9,14 +9,17 @@
 </script>
 
 <style lang="less">
-  @import '~vux/src/styles/reset.less';
+
+  *{
+    margin: 0 auto;
+  }
+
+  html,body{
+    height: 100%;
+  }
 
   body {
-    background-color: #fbf9fe;
-  }
-  h1, h2 {
-    font-weight: normal;
-    text-align: center;
+    background-color: #f1f5f8;
   }
 
   ul {
@@ -24,13 +27,20 @@
     padding: 0;
   }
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
+  a{
+    text-decoration: none;
   }
 
-  h1 a{
-    color: #000!important;
+  .tab-bar{
+    position: fixed!important;
+  }
+
+  #app{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
   }
 
 </style>

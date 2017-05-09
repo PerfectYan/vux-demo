@@ -8,8 +8,10 @@ import App from './App'
 import Home from './pages/home/Home'
 import Finance from './pages/finance/Finance'
 import Fund from './pages/fund/Fund'
+import Insurance from './pages/insurance/Insurance'
 import Profile from './pages/profile/Profile'
 import FundDetail from './pages/fund/FundDetail'
+import FinanceDetail from './pages/finance/FinanceDetail'
 
 Vue.use(VueRouter)
 Vue.use(AlertPlugin)
@@ -20,17 +22,23 @@ const routes = [{
   path: '/',
   component: Home
 }, {
+  path: '/fund',
+  component: Fund
+}, {
   path: '/finance',
   component: Finance
 }, {
-  path: '/fund',
-  component: Fund
+  path: '/insurance',
+  component: Insurance
 }, {
   path: '/profile',
   component: Profile
 }, {
   path: '/fund/detail/:id',
   component: FundDetail
+}, {
+  path: '/finance/detail/:id',
+  component: FinanceDetail
 }]
 
 const router = new VueRouter({

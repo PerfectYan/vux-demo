@@ -2,17 +2,21 @@
   <div class="profile">
     <h1>{{ msg }}</h1>
     <tabbar class="tab-bar">
-      <tabbar-item :link="{path:'/'}" >
+      <tabbar-item :link="{path:'/'}">
         <img slot="icon" src="../../assets/icon_nav_button.png">
         <span slot="label">首页</span>
+      </tabbar-item>
+      <tabbar-item :link="{path:'/fund'}">
+        <img slot="icon" src="../../assets/icon_nav_article.png">
+        <span slot="label">基金</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/finance'}">
         <img slot="icon" src="../../assets/icon_nav_msg.png">
         <span slot="label">理财</span>
       </tabbar-item>
-      <tabbar-item :link="{path:'/fund'}">
-        <img slot="icon" src="../../assets/icon_nav_article.png">
-        <span slot="label">基金</span>
+      <tabbar-item :link="{path:'/insurance'}">
+        <img slot="icon" src="../../assets/icon_nav_msg.png">
+        <span slot="label">保险</span>
       </tabbar-item>
       <tabbar-item badge="2" :link="{path:'/profile'}" selected>
         <img slot="icon" src="../../assets/icon_nav_cell.png">
