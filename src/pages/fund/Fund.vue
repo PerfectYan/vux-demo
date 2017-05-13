@@ -5,26 +5,34 @@
     </h1>
     <tabbar class="tab-bar">
       <tabbar-item :link="{path:'/'}">
-        <img slot="icon" src="../../assets/icon_nav_button.png">
+        <img slot="icon" v-if="$route.path === '/'" src="../../assets/home.svg">
+        <img slot="icon" v-else src="../../assets/homeDefault.svg">
         <span slot="label">首页</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/fund'}" selected>
-        <img slot="icon" src="../../assets/icon_nav_article.png">
+        <img slot="icon" v-if="$route.path === '/fund'" src="../../assets/fund.png">
+        <img slot="icon" v-else src="../../assets/fundDefault.png">
         <span slot="label">基金</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/finance'}">
-        <img slot="icon" src="../../assets/icon_nav_msg.png">
+        <img slot="icon" v-if="$route.path === '/finance'" src="../../assets/finance.svg">
+        <img slot="icon" v-else src="../../assets/financeDefault.svg">
         <span slot="label">理财</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/insurance'}">
-        <img slot="icon" src="../../assets/icon_nav_msg.png">
+        <img slot="icon" v-if="$route.path === '/insurance'" src="../../assets/insurance.png">
+        <img slot="icon" v-else src="../../assets/insuranceDefault.png">
         <span slot="label">保险</span>
       </tabbar-item>
-      <tabbar-item badge="2" :link="{path:'/profile'}">
-        <img slot="icon" src="../../assets/icon_nav_cell.png">
+      <tabbar-item :link="{path:'/profile'}">
+        <img slot="icon" v-if="$route.path === '/profile'" src="../../assets/my.svg">
+        <img slot="icon" v-else src="../../assets/myDefault.svg">
         <span slot="label">我的</span>
       </tabbar-item>
     </tabbar>
+    <transition name="router-slid" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -44,34 +52,11 @@
       Tabbar,
       TabbarItem
     },
-    mounted () {
-      this.$vux.loading.show({
-        text: '正在加载...'
-      })
-      setTimeout(() => {
-        this.$vux.loading.hide()
-      }, 300)
-    }
+    mounted () {}
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h1, h2 {
-    font-weight: normal;
-  }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
 </style>

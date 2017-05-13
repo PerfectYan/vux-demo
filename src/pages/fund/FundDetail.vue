@@ -19,14 +19,7 @@
     components: {
       Loading
     },
-    mounted () {
-      this.$vux.loading.show({
-        text: '正在加载...'
-      })
-      setTimeout(() => {
-        this.$vux.loading.hide()
-      }, 300)
-    }
+    mounted () {}
   }
 </script>
 

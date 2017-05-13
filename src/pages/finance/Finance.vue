@@ -5,7 +5,7 @@
         <div class="product-category">新手理财</div>
         <ul>
           <li v-for="product in newerProducts">
-            <a :href="'/finance/detail/' + product.fundcode ">
+            <router-link :to="'/finance/detail/' + product.fundcode ">
               <div class="content-left">
                 <p class="fund-rate orange">
                   <span>{{parseInt(product.annualrate).toFixed(2)}}</span><span class="percent">%</span>
@@ -18,7 +18,7 @@
                   <span class="orange">{{product.mintendtenderedsum}}</span>元起投 期限<span class="orange">{{product.deadline}}</span>{{product.deadlineunitname}}</span>
                 </p>
               </div>
-            </a>
+            </router-link>
           </li>
         </ul>
       </section>
@@ -26,7 +26,7 @@
         <div class="product-category">活期理财</div>
         <ul>
           <li v-for="product in currentProducts">
-            <a :href="'/finance/detail/' + product.fundcode ">
+            <router-link :to="'/finance/detail/' + product.fundcode ">
               <div class="content-left">
                 <p class="fund-rate orange">
                   <span>{{parseInt(product.annualrate).toFixed(2)}}</span><span class="percent">%</span>
@@ -39,7 +39,7 @@
                   <span class="orange">{{product.mintendtenderedsum}}元</span> 起投
                 </p>
               </div>
-            </a>
+            </router-link>
           </li>
         </ul>
       </section>
@@ -47,7 +47,7 @@
         <div class="product-category">定期理财</div>
         <ul>
           <li v-for="product in fixedProducts">
-            <a :href="'/finance/detail/' + product.fundcode ">
+            <router-link :to="'/finance/detail/' + product.fundcode ">
               <h4 class="fund-name">{{product.fundname}}</h4>
               <div class="fund-content">
                 <div class="content-left">
@@ -82,7 +82,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </router-link>
           </li>
         </ul>
       </section>
@@ -90,26 +90,34 @@
     </view-box>
     <tabbar class="tab-bar">
       <tabbar-item :link="{path:'/'}">
-        <img slot="icon" src="../../assets/icon_nav_button.png">
+        <img slot="icon" v-if="$route.path === '/'" src="../../assets/home.svg">
+        <img slot="icon" v-else src="../../assets/homeDefault.svg">
         <span slot="label">首页</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/fund'}">
-        <img slot="icon" src="../../assets/icon_nav_article.png">
+        <img slot="icon" v-if="$route.path === '/fund'" src="../../assets/fund.png">
+        <img slot="icon" v-else src="../../assets/fundDefault.png">
         <span slot="label">基金</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/finance'}" selected>
-        <img slot="icon" src="../../assets/icon_nav_msg.png">
+        <img slot="icon" v-if="$route.path === '/finance'" src="../../assets/finance.svg">
+        <img slot="icon" v-else src="../../assets/financeDefault.svg">
         <span slot="label">理财</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/insurance'}">
-        <img slot="icon" src="../../assets/icon_nav_msg.png">
+        <img slot="icon" v-if="$route.path === '/insurance'" src="../../assets/insurance.png">
+        <img slot="icon" v-else src="../../assets/insuranceDefault.png">
         <span slot="label">保险</span>
       </tabbar-item>
-      <tabbar-item badge="2" :link="{path:'/profile'}">
-        <img slot="icon" src="../../assets/icon_nav_cell.png">
+      <tabbar-item :link="{path:'/profile'}">
+        <img slot="icon" v-if="$route.path === '/profile'" src="../../assets/my.svg">
+        <img slot="icon" v-else src="../../assets/myDefault.svg">
         <span slot="label">我的</span>
       </tabbar-item>
     </tabbar>
+    <transition name="router-slid" mode="in-out">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -125,7 +133,7 @@
         newerData: null,
         currentData: null,
         fixedData: null,
-        strokeColor: '#04BE02',
+        strokeColor: '#3a92ff',
         percent: 0,
         fundstatus: null
       }
@@ -210,6 +218,10 @@
     padding-bottom: 53px !important;
   }
 
+  .weui-cells {
+    font-size: 14px;
+  }
+
   .product-category {
     padding-left: 20px;
     line-height: 39px;
@@ -271,7 +283,7 @@
   }
 
   .content-right p {
-    padding-right: 20px;
+    padding-right: 10px;
 
   }
 
@@ -296,7 +308,7 @@
     width: 56px;
     height: 56px;
     position: absolute;
-    right: 40px;
+    right: 30px;
     top: -24px
   }
 
@@ -312,6 +324,10 @@
     position: absolute;
     right: .1rem;
     bottom: .8rem;
+    line-height: 14px;
+  }
+
+  .product-status .time span {
     font-size: 12px;
   }
 
