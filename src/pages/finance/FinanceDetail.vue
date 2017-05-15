@@ -55,9 +55,9 @@
         <cell v-show="product.singlesubuplimit" title="购买上限">{{fixMoney(product.singlesubuplimit)}}</cell>
       </group>
       <group>
-        <cell title="收益规则" is-link></cell>
-        <cell title="兑付规则" is-link></cell>
-        <cell title="产品说明" is-link></cell>
+        <cell title="产品说明" is-link :link="{path:'/finance/info/0'}"></cell>
+        <cell title="收益规则" is-link :link="{path:'/finance/info/1'}"></cell>
+        <cell title="兑付规则" is-link :link="{path:'/finance/info/2'}"></cell>
         <cell title="更多产品详情" is-link></cell>
       </group>
     </view-box>
