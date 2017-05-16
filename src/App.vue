@@ -103,4 +103,14 @@
     color: #3a92ff!important;
   }
 
+  .weui-btn{
+    position: fixed!important;;
+    left: 0;
+    bottom: 0;
+    line-height: 2.8!important;
+    border-radius: 0!important;
+    background-color: #FF5155!important;
+    cursor: pointer;
+  }
+
 </style>

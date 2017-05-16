@@ -9,7 +9,7 @@
       </tabbar-item>
       <tabbar-item :link="{path:'/fund'}">
         <img slot="icon" v-if="$route.path === '/fund'" src="../../assets/fund.png">
-        <img slot="icon" v-else src="../../assets/fundDefault.png">
+        <img slot="icon" v-else src="../../assets/fundDefault.svg">
         <span slot="label">基金</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/finance'}">
@@ -18,8 +18,8 @@
         <span slot="label">理财</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/insurance'}" selected>
-        <img slot="icon" v-if="$route.path === '/insurance'" src="../../assets/insurance.png">
-        <img slot="icon" v-else src="../../assets/insuranceDefault.png">
+        <img slot="icon" v-if="$route.path === '/insurance'" src="../../assets/insurance.svg">
+        <img slot="icon" v-else src="../../assets/insuranceDefault.svg">
         <span slot="label">保险</span>
       </tabbar-item>
       <tabbar-item :link="{path:'/profile'}">

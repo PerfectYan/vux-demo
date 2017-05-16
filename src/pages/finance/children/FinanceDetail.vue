@@ -3,7 +3,7 @@
     <view-box class="product-detail">
       <card>
         <div slot="content" class="fund-name">{{product.fundname}}</div>
-        <p slot="content" class="risk-level"><img src="../../assets/risk-normal.png"/><span>{{product.fundrisklevelname}}</span>
+        <p slot="content" class="risk-level"><img src="../../../assets/risk-normal.png"/><span>{{product.fundrisklevelname}}</span>
         </p>
         <p slot="content" class="annualrate text-center">{{product.annualrate}}<span>%</span></p>
         <p slot="content" class="text-center">预期年化收益</p>
@@ -28,23 +28,23 @@
       <group>
         <div class="progress">
           <div class="invest">
-            <img src="../../assets/invest.svg">
+            <img src="../../../assets/invest.svg">
             <p>开始募集</p>
             <p>{{dateFormatStr(product.begintranstime)}}</p>
           </div>
           <div class="line line1">
-            <img src="../../assets/Line@2x.png">
+            <img src="../../../assets/Line@2x.png">
           </div>
           <div class="interest">
-            <img src="../../assets/interest.svg">
+            <img src="../../../assets/interest.svg">
             <p>开始计息</p>
             <p>{{dateFormatStr(product.interestdate)}}</p>
           </div>
           <div class="line line2">
-            <img src="../../assets/Line@2x.png">
+            <img src="../../../assets/Line@2x.png">
           </div>
           <div class="redemption">
-            <img src="../../assets/redemption.svg">
+            <img src="../../../assets/redemption.svg">
             <p>到期回款</p>
             <p>{{dateFormatStr(product.expiredate)}}</p>
           </div>
@@ -55,24 +55,26 @@
         <cell v-show="product.singlesubuplimit" title="购买上限">{{fixMoney(product.singlesubuplimit)}}</cell>
       </group>
       <group>
-        <cell title="产品说明" is-link :link="{path:'/finance/info/0'}"></cell>
-        <cell title="收益规则" is-link :link="{path:'/finance/info/1'}"></cell>
-        <cell title="兑付规则" is-link :link="{path:'/finance/info/2'}"></cell>
+        <cell title="产品说明" is-link :link="{path:'/finance/info/0'}" class="is-link"></cell>
+        <cell title="收益规则" is-link :link="{path:'/finance/info/1'}" class="is-link"></cell>
+        <cell title="兑付规则" is-link :link="{path:'/finance/info/2'}" class="is-link"></cell>
         <cell title="更多产品详情" is-link></cell>
       </group>
     </view-box>
-    <x-button id="btn-buy" type="primary">立即购买</x-button>
+    <router-link :to="'/finance/pay/' + product.fundcode ">
+      <x-button id="btn-buy" type="primary">立即购买</x-button>
+    </router-link>
   </div>
 </template>
 
 <script>
 
-  import {productDetail} from '../../common/getData'
   import {Loading, ViewBox, XButton, Card, Group, Cell} from 'vux'
+  import {productDetail} from '../../../common/getData'
 
   export default {
     data () {
-      const fundCode = this.$route.params.id || ''
+      const fundCode = this.$route.params.fundcode || ''
       return {
         msg: '理财产品详情',
         fundCode: fundCode,
@@ -90,6 +92,7 @@
     computed: {
       product: function () {
         if (this.detailData) {
+          this.setParameter('productDetail', JSON.stringify(this.detailData.kdjson.items[0]))
           return this.detailData.kdjson.items[0]
         } else {
           return {}
@@ -132,8 +135,10 @@
         if (dateString) {
           return dateString.substring(0, 4) + '.' + dateString.substring(4, 6) + '.' + dateString.substring(6, 8)
         }
+      },
+      setParameter: function (key, value) {
+        window.sessionStorage.setItem(key, value)
       }
-
     },
     mounted () {
       this.$vux.loading.show({
@@ -149,12 +154,13 @@
 
   .weui-panel {
     font-size: 12px;
-    padding: 20px 15px 0;
+    padding: 15px 15px 0;
   }
 
   .weui-cell {
     padding: 15px;
   }
+
 
   .finance—detail {
     position: relative;
@@ -206,6 +212,7 @@
   .risk-level {
     position: relative;
     overflow: hidden;
+    padding-top: 2px;
   }
 
   .risk-level img {
@@ -230,15 +237,6 @@
 
   .annualrate span {
     font-size: 28px;
-  }
-
-  #btn-buy {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    line-height: 2.8;
-    border-radius: 0;
-    background-color: #FF5155;
   }
 
   .progress {
@@ -304,6 +302,10 @@
   .progress .line img {
     width: 90%;
     height: 3px;
+  }
+
+  .is-link{
+    cursor: pointer;
   }
 
 </style>
